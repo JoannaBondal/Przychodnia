@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Wizyty</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Rezerwacja wizyty", "Create")
 </p>
 <table class="table">
     <tr>
@@ -27,12 +27,12 @@
             @Html.DisplayFor(modelItem => item.Data)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Godzina)
+            @Html.DisplayFor(modelItem => item.Godzina.TimeOfDay)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Usuń", "Delete", new { id=item.ID })
         </td>
     </tr>
 }

@@ -27,6 +27,8 @@ namespace Przychodnia.Models
         }
 
         public DbSet<Wizyta> Wizyty { get; set; }
+        public DbSet<Pacjent> Pacjenci { get; set; }
+        public DbSet<Lekarz> Lekarze { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

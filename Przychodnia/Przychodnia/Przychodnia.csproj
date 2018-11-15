@@ -188,10 +188,24 @@
     <Compile Include="Migrations\201811150041415_In2.Designer.cs">
       <DependentUpon>201811150041415_In2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811151040059_pacjent.cs" />
+    <Compile Include="Migrations\201811151040059_pacjent.Designer.cs">
+      <DependentUpon>201811151040059_pacjent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811151042493_pacjent1.cs" />
+    <Compile Include="Migrations\201811151042493_pacjent1.Designer.cs">
+      <DependentUpon>201811151042493_pacjent1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811151047362_lekarze.cs" />
+    <Compile Include="Migrations\201811151047362_lekarze.Designer.cs">
+      <DependentUpon>201811151047362_lekarze.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Lekarz.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Pacjent.cs" />
     <Compile Include="Models\Wizyta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -280,6 +294,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811150041415_In2.resx">
       <DependentUpon>201811150041415_In2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811151040059_pacjent.resx">
+      <DependentUpon>201811151040059_pacjent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811151042493_pacjent1.resx">
+      <DependentUpon>201811151042493_pacjent1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811151047362_lekarze.resx">
+      <DependentUpon>201811151047362_lekarze.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

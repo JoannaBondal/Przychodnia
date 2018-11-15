@@ -6,20 +6,22 @@ using System.Web.Mvc;
 
 namespace Przychodnia.Controllers
 {
+    
     public class HomeController : Controller
     {
+        [Authorize(Roles = "Lekarz")]
         public ActionResult Index()
         {
             return View();
         }
-
+        [Authorize(Roles = "Pacjent")]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
