@@ -16,6 +16,7 @@ namespace Przychodnia.Models
             // Dodaj tutaj niestandardowe oświadczenia użytkownika
             return userIdentity;
         }
+        public int Test { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -25,6 +26,7 @@ namespace Przychodnia.Models
         {
         }
 
+        public DbSet<Wizyta> Wizyty { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
