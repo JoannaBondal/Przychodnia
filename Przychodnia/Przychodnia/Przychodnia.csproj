@@ -200,6 +200,14 @@
     <Compile Include="Migrations\201811151047362_lekarze.Designer.cs">
       <DependentUpon>201811151047362_lekarze.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811281947583_wizyta_RodzajWizyty.cs" />
+    <Compile Include="Migrations\201811281947583_wizyta_RodzajWizyty.Designer.cs">
+      <DependentUpon>201811281947583_wizyta_RodzajWizyty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811282121349_wizyta_DeleteGodzina.cs" />
+    <Compile Include="Migrations\201811282121349_wizyta_DeleteGodzina.Designer.cs">
+      <DependentUpon>201811282121349_wizyta_DeleteGodzina.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -303,6 +311,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811151047362_lekarze.resx">
       <DependentUpon>201811151047362_lekarze.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811281947583_wizyta_RodzajWizyty.resx">
+      <DependentUpon>201811281947583_wizyta_RodzajWizyty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811282121349_wizyta_DeleteGodzina.resx">
+      <DependentUpon>201811282121349_wizyta_DeleteGodzina.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

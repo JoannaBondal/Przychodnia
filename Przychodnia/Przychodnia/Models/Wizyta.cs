@@ -12,7 +12,9 @@ namespace Przychodnia.Models
         public int ID { get; set; }
 
         public DateTime Data { get; set; }
-        public DateTime Godzina { get; set; }
+        
+        public string RodzajWizyty { get; set; }
+        
 
         public ApplicationUser Pacjent { get; set; }
         public ApplicationUser Lekarz { get; set; }

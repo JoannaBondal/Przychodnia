@@ -4,20 +4,41 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using Przychodnia.Models;
 
 namespace Przychodnia.Controllers
 {
+    [Authorize]
     public class WizytyController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Wizyty
+
         public ActionResult Index()
         {
-            return View(db.Wizyty.ToList());
+            string userId = PobierzID();
+                     
+            if (User.IsInRole("Pacjent"))
+                return View(db.Wizyty.Where(s => s.Pacjent.Id == userId).ToList());
+            else
+                return View(db.Wizyty.Where(s => s.Lekarz.Id == userId).ToList());
+        }
+
+        private List<ApplicationUser> ZwrocLekarza()
+        {
+            return db.Users.Where(s=>s.Roles.Any(ss=>ss.RoleId=="1")).ToList();
+        }
+
+        private string PobierzID()
+        {
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            var claims = claimsIdentity.Claims.ToList();
+            var userId = claims[0].Value;
+            return userId;
         }
 
         // GET: Wizyty/Details/5
@@ -35,21 +56,29 @@ namespace Przychodnia.Controllers
             return View(wizyta);
         }
 
+
         // GET: Wizyty/Create
+        [Authorize(Roles = "Pacjent")]
         public ActionResult Create()
         {
+            ViewBag.Lekarze = ZwrocLekarza();
             return View();
         }
 
         // POST: Wizyty/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Pacjent")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Data,Godzina")] Wizyta wizyta)
+        public ActionResult Create([Bind(Include = "ID,Data,RodzajWizyty,Lekarz")] Wizyta wizyta)
         {
             if (ModelState.IsValid)
             {
+                var userId = PobierzID();
+                var pacjent = db.Users.FirstOrDefault(s => s.Id == userId);
+                wizyta.Pacjent = pacjent;
+                wizyta.Lekarz = db.Users.FirstOrDefault(s=>s.Id==wizyta.Lekarz.Id);
                 db.Wizyty.Add(wizyta);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -59,6 +88,7 @@ namespace Przychodnia.Controllers
         }
 
         // GET: Wizyty/Edit/5
+        [Authorize(Roles = "Pacjent")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,10 +108,15 @@ namespace Przychodnia.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Data,Godzina")] Wizyta wizyta)
+        [Authorize(Roles = "Pacjent")]
+        public ActionResult Edit([Bind(Include = "ID,Data,RodzajWizyty,Lekarz")] Wizyta wizyta)
         {
             if (ModelState.IsValid)
             {
+                var userId = PobierzID();
+                var pacjent = db.Users.FirstOrDefault(s => s.Id == userId);
+                wizyta.Pacjent = pacjent;
+                wizyta.Lekarz = db.Users.FirstOrDefault(s => s.Id == wizyta.Lekarz.Id);
                 db.Entry(wizyta).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -90,6 +125,7 @@ namespace Przychodnia.Controllers
         }
 
         // GET: Wizyty/Delete/5
+        [Authorize(Roles = "Pacjent")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,6 +141,7 @@ namespace Przychodnia.Controllers
         }
 
         // POST: Wizyty/Delete/5
+        [Authorize(Roles = "Pacjent")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
