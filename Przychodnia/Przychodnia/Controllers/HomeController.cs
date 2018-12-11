@@ -9,19 +9,19 @@ namespace Przychodnia.Controllers
     
     public class HomeController : Controller
     {
-        [Authorize(Roles = "Lekarz")]
+        
         public ActionResult Index()
         {
             return View();
         }
-        [Authorize(Roles = "Pacjent")]
+        
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
-            return View();
+            return View("~/Views/Wizyty/Index.cshtml");
         }
-        [Authorize(Roles = "Admin")]
+        
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

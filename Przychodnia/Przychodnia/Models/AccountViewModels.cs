@@ -70,6 +70,14 @@ namespace Przychodnia.Models
         public string Email { get; set; }
 
         [Required]
+        [Display(Name = "Imię")]
+        public string Imie { get; set; }
+
+        [Required]
+        [Display(Name = "Nazwisko")]
+        public string Nazwisko { get; set; }
+
+        [Required]
         [StringLength(100, ErrorMessage = "{0} musi zawierać co najmniej następującą liczbę znaków: {2}.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Hasło")]

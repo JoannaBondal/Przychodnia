@@ -8,7 +8,8 @@
 <h2>Wizyty</h2>
 
 <p>
-    @Html.ActionLink("Rezerwacja wizyty", "Create")
+   @if (User.IsInRole("Pacjent")) {
+       @Html.ActionLink("Rezerwacja wizyty", "Create", new { @class = "btn btn-default" })}
 </p>
 <table class="table">
     <tr>
@@ -30,15 +31,16 @@
             @Html.DisplayFor(modelItem => item.Data)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Lekarz.Id)
+            @Html.DisplayFor(modelItem => item.Lekarz.Nazwisko)
         </td><td>
     @Html.DisplayFor(modelItem => item.RodzajWizyty)
 </td>
-        <td>
-            @Html.ActionLink("Edytuj", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Szczegóły", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Usuń", "Delete", new { id=item.ID })
-        </td>
+             <td>
+
+                 @if (User.IsInRole("Pacjent")) {@Html.ActionLink("Edytuj", "Edit", new { id = item.ID },new { @class= "btn btn-default" })}
+                 @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }, new { @class = "btn btn-default" }) 
+                 @Html.ActionLink("Usuń", "Delete", new { id = item.ID }, new { @class = "btn btn-default" })
+             </td>
     </tr>
 }
 

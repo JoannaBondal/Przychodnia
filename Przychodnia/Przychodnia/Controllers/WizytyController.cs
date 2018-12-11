@@ -21,7 +21,9 @@ namespace Przychodnia.Controllers
         public ActionResult Index()
         {
             string userId = PobierzID();
-                     
+
+            var d = db.Users.ToList();
+           
             if (User.IsInRole("Pacjent"))
                 return View(db.Wizyty.Where(s => s.Pacjent.Id == userId).ToList());
             else
@@ -32,6 +34,15 @@ namespace Przychodnia.Controllers
         {
             return db.Users.Where(s=>s.Roles.Any(ss=>ss.RoleId=="1")).ToList();
         }
+
+        private List<string> ZwrocGodziny()
+        {
+            return new List<string>
+            {
+                "8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00"
+            };
+        }
+
 
         private string PobierzID()
         {
@@ -48,6 +59,7 @@ namespace Przychodnia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var d = db.Users.ToList();
             Wizyta wizyta = db.Wizyty.Find(id);
             if (wizyta == null)
             {
@@ -62,6 +74,7 @@ namespace Przychodnia.Controllers
         public ActionResult Create()
         {
             ViewBag.Lekarze = ZwrocLekarza();
+            ViewBag.Godziny = ZwrocGodziny();
             return View();
         }
 

@@ -25,9 +25,16 @@
     </div>
 
     <div class="form-group">
-       <p class = "control-label col-md-2">Lekarz</p>
+        <p class="control-label col-md-2">Godzina</p>
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Lekarz.Id, new SelectList(ViewBag.Lekarze,"id","UserName"),"Wybierz lekarza",new { @class = "form-control" })
+            @Html.DropDownListFor(model => model.Lekarz.Id, new SelectList(ViewBag.Godziny), "Wybierz godzine", new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <p class="control-label col-md-2">Lekarz</p>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Lekarz.Id, new SelectList(ViewBag.Lekarze, "id", "Nazwisko"), "Wybierz lekarza", new { @class = "form-control" })
         </div>
     </div>
 

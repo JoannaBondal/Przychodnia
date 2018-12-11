@@ -176,6 +176,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RejestracjaController.cs" />
     <Compile Include="Controllers\WizytyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -208,6 +209,10 @@
     <Compile Include="Migrations\201811282121349_wizyta_DeleteGodzina.Designer.cs">
       <DependentUpon>201811282121349_wizyta_DeleteGodzina.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812101919050_dodanieImieNazwisko.cs" />
+    <Compile Include="Migrations\201812101919050_dodanieImieNazwisko.Designer.cs">
+      <DependentUpon>201812101919050_dodanieImieNazwisko.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -228,6 +233,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\Przychodnia - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\Przychodnia - Web Deploy1.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -278,6 +285,7 @@
     <Content Include="Views\Wizyty\Details.cshtml" />
     <Content Include="Views\Wizyty\Edit.cshtml" />
     <Content Include="Views\Wizyty\Index.cshtml" />
+    <Content Include="Views\Rejestracja\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -317,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811282121349_wizyta_DeleteGodzina.resx">
       <DependentUpon>201811282121349_wizyta_DeleteGodzina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812101919050_dodanieImieNazwisko.resx">
+      <DependentUpon>201812101919050_dodanieImieNazwisko.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

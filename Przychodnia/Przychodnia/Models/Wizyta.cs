@@ -11,6 +11,8 @@ namespace Przychodnia.Models
         [Key]
         public int ID { get; set; }
 
+        [Display(Name = "Data wizyty")]
+        [DataType(DataType.Date)]
         public DateTime Data { get; set; }
         
         public string RodzajWizyty { get; set; }

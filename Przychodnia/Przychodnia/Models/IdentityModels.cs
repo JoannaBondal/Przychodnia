@@ -17,6 +17,9 @@ namespace Przychodnia.Models
             return userIdentity;
         }
         public int Test { get; set; }
+
+        public string Imie { get; set; }
+        public string Nazwisko { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -33,5 +36,9 @@ namespace Przychodnia.Models
         {
             return new ApplicationDbContext();
         }
+
+     //   public System.Data.Entity.DbSet<Przychodnia.Models.ApplicationUser> ApplicationUsers { get; set; }
+
+        //  public System.Data.Entity.DbSet<Przychodnia.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
