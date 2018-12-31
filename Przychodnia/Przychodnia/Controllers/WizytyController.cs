@@ -35,12 +35,27 @@ namespace Przychodnia.Controllers
             return db.Users.Where(s=>s.Roles.Any(ss=>ss.RoleId=="1")).ToList();
         }
 
-        private List<string> ZwrocGodziny()
+        public JsonResult ZwrocGodziny(string iDLekarza, DateTime dzien)
         {
-            return new List<string>
+            List<SelectListItem> godziny = new List<SelectListItem>
             {
-                "8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00"
+                new SelectListItem{ Text= "8:00" ,Value="8:00" },
+                new SelectListItem{ Text= "9:00", Value="9:00" },
+                new SelectListItem{ Text= "10:00",Value="10:00" },
+                new SelectListItem{ Text= "11:00",Value="11:00" },
+                new SelectListItem{ Text= "12:00",Value="12:00" },
+                new SelectListItem{ Text= "13:00",Value="13:00" },
+                new SelectListItem{ Text= "14:00",Value="14:00" },
+                new SelectListItem{ Text= "15:00",Value="15:00" },
+                new SelectListItem{ Text= "16:00",Value="16:00" },
+                new SelectListItem{ Text= "17:00",Value="17:00" }
             };
+            if (dzien.DayOfWeek == DayOfWeek.Sunday || dzien.DayOfWeek == DayOfWeek.Saturday) return Json(new SelectList("", "Value", "Text"));
+
+            var zajete = db.Wizyty.Where(s => s.Data == dzien && s.Lekarz.Id == iDLekarza);
+            foreach (var z in zajete)
+                godziny.Remove(godziny.FirstOrDefault(s => s.Value.Contains(z.Czas.Hour.ToString())));
+            return Json(new SelectList(godziny, "Value", "Text"));
         }
 
 
@@ -74,7 +89,7 @@ namespace Przychodnia.Controllers
         public ActionResult Create()
         {
             ViewBag.Lekarze = ZwrocLekarza();
-            ViewBag.Godziny = ZwrocGodziny();
+          //  ViewBag.Godziny = ZwrocGodziny();
             return View();
         }
 
@@ -84,7 +99,7 @@ namespace Przychodnia.Controllers
         [Authorize(Roles = "Pacjent")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Data,RodzajWizyty,Lekarz")] Wizyta wizyta)
+        public ActionResult Create([Bind(Include = "ID,Data,Czas,RodzajWizyty,Lekarz")] Wizyta wizyta)
         {
             if (ModelState.IsValid)
             {
@@ -104,6 +119,7 @@ namespace Przychodnia.Controllers
         [Authorize(Roles = "Pacjent")]
         public ActionResult Edit(int? id)
         {
+            ViewBag.Lekarze = ZwrocLekarza();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -122,7 +138,7 @@ namespace Przychodnia.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Pacjent")]
-        public ActionResult Edit([Bind(Include = "ID,Data,RodzajWizyty,Lekarz")] Wizyta wizyta)
+        public ActionResult Edit([Bind(Include = "ID,Data,Czas,RodzajWizyty,Lekarz")] Wizyta wizyta)
         {
             if (ModelState.IsValid)
             {
@@ -145,6 +161,7 @@ namespace Przychodnia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var d = db.Users.ToList();
             Wizyta wizyta = db.Wizyty.Find(id);
             if (wizyta == null)
             {

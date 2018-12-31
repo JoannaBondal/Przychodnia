@@ -14,7 +14,11 @@ namespace Przychodnia.Models
         [Display(Name = "Data wizyty")]
         [DataType(DataType.Date)]
         public DateTime Data { get; set; }
-        
+
+        [Display(Name = "Godzina wizyty")]
+        [DataType(DataType.Time)]
+        public DateTime Czas { get; set; }
+
         public string RodzajWizyty { get; set; }
         
 

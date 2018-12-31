@@ -14,6 +14,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Czas)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Data)
         </th>
         <th>
@@ -28,19 +31,27 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Czas)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Data)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Lekarz.Nazwisko)
-        </td><td>
-    @Html.DisplayFor(modelItem => item.RodzajWizyty)
-</td>
-             <td>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RodzajWizyty)
+        </td>
+        <td>
 
-                 @if (User.IsInRole("Pacjent")) {@Html.ActionLink("Edytuj", "Edit", new { id = item.ID },new { @class= "btn btn-default" })}
-                 @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }, new { @class = "btn btn-default" }) 
-                 @Html.ActionLink("Usuń", "Delete", new { id = item.ID }, new { @class = "btn btn-default" })
-             </td>
+            @if (User.IsInRole("Pacjent"))
+            {
+                @Html.ActionLink("Edytuj", "Edit", new { id = item.ID }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Usuń", "Delete", new { id = item.ID }, new { @class = "btn btn-default" })
+            }
+            @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }, new { @class = "btn btn-default" })
+
+        </td>
     </tr>
 }
 

@@ -18,6 +18,12 @@ namespace Przychodnia
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+               name: "zablokuj",
+               url: "{controller}/{action}/{id}/{zablokuj}",
+               defaults: new { controller = "Rejestracja", action = "Zablokuj", id = UrlParameter.Optional }
+           );
         }
     }
 }

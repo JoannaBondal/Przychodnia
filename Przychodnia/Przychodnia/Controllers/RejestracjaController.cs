@@ -20,7 +20,8 @@ namespace Przychodnia.Controllers
         // GET: Rejestracja
         public ActionResult Index()
         {
-            return View(db.Users.Where(s=>s.Roles.Any(ss=>ss.RoleId=="2")).ToList());
+          
+            return View(db.Users.Where(s=>s.Roles.Any(ss=>ss.RoleId=="2" || ss.RoleId=="1")).ToList());
         }
 
         // GET: Rejestracja/Details/5
@@ -43,6 +44,30 @@ namespace Przychodnia.Controllers
                 var userManager = new UserManager<ApplicationUser>(userStore);
                 userManager.AddToRole(user.Id, "Lekarz");
                 userManager.RemoveFromRole(user.Id, "Pacjent");
+
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Zablokuj(string id,bool zablokuj)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser applicationUser = db.Users.Find(id);
+            if (applicationUser == null)
+            {
+                return HttpNotFound();
+            }
+            using (var db = new ApplicationDbContext())
+            {
+                var user = db.Users.FirstOrDefault(s => s.Id == id);
+
+                var userStore = new UserStore<ApplicationUser>(db);
+                var userManager = new UserManager<ApplicationUser>(userStore);
+                userManager.SetLockoutEnabled(user.Id, zablokuj);
+                userManager.SetLockoutEndDate(user.Id,DateTime.Now.AddYears(99));
 
             }
             return RedirectToAction("Index");

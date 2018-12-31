@@ -19,13 +19,20 @@
         <dd>
             @Html.DisplayFor(model => model.Data)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Czas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Czas)
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Lekarz)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Lekarz.UserName)
+            @Html.DisplayFor(model => model.Lekarz.Nazwisko)
         </dd>
 
         <dt>

@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Lista użytkowników</h2>
 
 
 <table class="table">
@@ -38,8 +38,24 @@
         </td>
         
         <td>
-           
-            @Html.ActionLink("Zmien", "ZmienNaLekarz", new { id=item.Id},new { @class= "btn btn-default"}) 
+
+            @if (item.Roles.Any(s => s.RoleId == "2"))
+            {
+                @Html.ActionLink("Zmień na lekarza", "ZmienNaLekarz", new { id = item.Id }, new { @class = "btn btn-default" })
+                
+                if (!item.LockoutEnabled)
+                {
+                    @Html.ActionLink("Zablokuj", "Zablokuj", new { id = item.Id, zablokuj = true }, new { @class = "btn btn-default" })
+
+                }
+                else
+                {
+                    @Html.ActionLink("Odblokuj", "Zablokuj", new { id = item.Id, zablokuj = false }, new { @class = "btn btn-default" })
+
+                }
+
+            }
+
 
 
         </td>

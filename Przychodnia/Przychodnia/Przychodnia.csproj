@@ -213,6 +213,10 @@
     <Compile Include="Migrations\201812101919050_dodanieImieNazwisko.Designer.cs">
       <DependentUpon>201812101919050_dodanieImieNazwisko.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812271900025_dodanoCzas.cs" />
+    <Compile Include="Migrations\201812271900025_dodanoCzas.Designer.cs">
+      <DependentUpon>201812271900025_dodanoCzas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -328,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812101919050_dodanieImieNazwisko.resx">
       <DependentUpon>201812101919050_dodanieImieNazwisko.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812271900025_dodanoCzas.resx">
+      <DependentUpon>201812271900025_dodanoCzas.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
